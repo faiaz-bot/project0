@@ -1,6 +1,10 @@
-import React,{useState} from "react";
+import React,{useState} from 'react';
+import copy from "copy-to-clipboard";
+
 
 export default function TextForm(props){
+    const [text,setText] = useState(`Enter text here`);
+    const [ copyText, setCopyText] = useState('')
     const handleUpClick = ()=>{
         // console.log("Upper case was clicked" + text);
         let newText = text.toUpperCase();
@@ -17,9 +21,14 @@ export default function TextForm(props){
     const handleOnChange = (event)=>{
         // console.log("On Change");
         setText(event.target.value);
+        setCopyText(event.target.value);
+
+    }
+    const copyOnClick = () =>{
+        copy(copyText);
+        alert(`you have copied "${copyText}"`)
     }
 
-    const [text,setText] = useState(`Enter text here`);
     return(
         <>
         <div className="container">
@@ -30,6 +39,7 @@ export default function TextForm(props){
             <button className="btn btn-primary mx-1" onClick={handleUpClick}>Convert Uppercase</button>
             <button className="btn btn-primary mx-1" onClick={handleLoClick}>Convert Lowercase</button>
             <button className="btn btn-primary mx-1" onClick={handleClClick}>Clear Text</button>
+            <button className="btn btn-primary mx-1" onClick={copyOnClick}>Copy Text</button>
 
         </div>
             <div className="container my-3">
