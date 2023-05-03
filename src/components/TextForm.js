@@ -31,6 +31,9 @@ export default function TextForm(props){
                 copy(text);
                 alert(`you have copied "${text}"`)
             }}>Copy Text</button>
+            <button className="btn btn-primary max-1" onClick={() =>{
+                setText(text.replace(/\s+/g, ' ').trim());
+            }}>Remove Space</button>
 
         </div>
             <div className="container my-3">
